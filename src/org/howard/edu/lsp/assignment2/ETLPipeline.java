@@ -14,20 +14,26 @@ import java.math.RoundingMode;
 
 public class ETLPipeline {
     public static void main(String[] args) {
-        String inputFilePath = "org\\howard\\edu\\lsp\\assignment2\\data\\products.csv";
-        String outputFilePath = "org\\howard\\edu\\lsp\\assignment2\\data\\transformed_products.csv";
+        String inputFilePath = "org/howard/edu/lsp/assignment2/data/products.csv";
+        String outputFilePath = "org/howard/edu/lsp/assignment2/data/transformed_products.csv";
         int skippedRows = 0;
         int totalRows = 0;
         int transformedRows = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
              BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilePath))) {
-            String header = br.readLine();
-            boolean wroteHeader = false;
-            boolean hasValidRows = false;
+            
+            boolean isHeader = true;
             String line;
 
             while ((line = br.readLine()) != null) {
+
+                //Write header to output file
+                if (isHeader){
+                    bw.write(line + ",Price Range");
+                    isHeader = false;
+                    continue;
+                }
 
                 totalRows++;
 
@@ -102,15 +108,6 @@ public class ETLPipeline {
                 newValues[values.length] = priceRange;
                 values = newValues;
 
-                // Set hasValidRows to true
-                hasValidRows = true;
-
-                // Write header to output file if not already written
-                if (!wroteHeader) {
-                    bw.write(header + ",Price Range");
-                    
-                    wroteHeader = true;
-                }
 
                 // Write the transformed row to the output file
                 transformedRows++;
@@ -125,10 +122,7 @@ public class ETLPipeline {
                 bw.write(sb.toString());
                 
             }
-            // Write unmodifed header if no valid rows were processed
-            if (!hasValidRows){
-                bw.write(header);
-            }
+            
 
             System.out.println("Total rows encountered: " + totalRows);
             System.out.println("Total transformed rows: " + transformedRows);
