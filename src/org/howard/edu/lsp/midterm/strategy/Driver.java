@@ -2,9 +2,17 @@ package org.howard.edu.lsp.midterm.strategy;
 
 /**
  * Driver class to demonstrate the Strategy Pattern for different customer types.
+ * @author Aprille Thomas
  */
 public class Driver {
 
+    /**
+     * Main method that demonstrates calculating final prices for
+     * REGULAR, MEMBER, VIP, and HOLIDAY customers.
+     *
+     * @param args Command-line arguments (not used).
+     */
+    
     public static void main(String[] args) {
         double purchasePrice = 100.0;
         PriceCalculator calculator = new PriceCalculator();
