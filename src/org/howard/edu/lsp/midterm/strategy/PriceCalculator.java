@@ -2,6 +2,7 @@ package org.howard.edu.lsp.midterm.strategy;
 
 /**
  * Context class that uses a PriceStrategy to calculate final prices.
+ *@author Aprille Thomas
  */
 public class PriceCalculator {
 
@@ -21,6 +22,7 @@ public class PriceCalculator {
      *
      * @param price The original price.
      * @return The final price after applying the strategy.
+     * @throws IllegalStateException if no PriceStrategy has been set.
      */
     public double calculatePrice(double price) {
         if (strategy == null) {
