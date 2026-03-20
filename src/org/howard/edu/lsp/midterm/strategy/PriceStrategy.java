@@ -2,6 +2,7 @@ package org.howard.edu.lsp.midterm.strategy;
 
 /**
  * Strategy interface for calculating discounts.
+ * @author Aprille Thomas
  */
 public interface PriceStrategy {
 
